@@ -1,0 +1,6 @@
+# Vim ignores
+*.swp
+*.swo
+
+# Build
+polygon
