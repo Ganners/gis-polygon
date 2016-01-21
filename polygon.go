@@ -1,4 +1,4 @@
-package collision
+package polygon
 
 import "math"
 
