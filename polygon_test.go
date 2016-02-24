@@ -185,10 +185,52 @@ func TestPointInside(t *testing.T) {
 			},
 			Expect: true,
 		},
+		{
+			Polygon: Polygon{
+				{
+					1.3115500260580089,
+					103.9826774597168,
+				},
+				{
+					1.306916378856047,
+					104.03383255004881,
+				},
+				{
+					1.3566847287158743,
+					104.04670715332031,
+				},
+				{
+					1.3783079018157476,
+					104.00842666625977,
+				},
+				{
+					1.39443934768891,
+					103.99538040161131,
+				},
+				{
+					1.3467311394464763,
+					103.97066116333008,
+				},
+				{
+					1.333001984156086,
+					103.97203445434569,
+				},
+				{
+					1.3115500260580089,
+					103.9826774597168,
+				},
+			},
+			Point: Point{
+				// Tightly within the boundary
+				1.354868,
+				103.990506,
+			},
+			Expect: true,
+		},
 	}
 
 	// Iterate test cases and execute
-	for _, test := range testCases {
+	for _, test := range testCases[len(testCases)-1:] {
 
 		res := test.Polygon.PointInside(test.Point)
 
