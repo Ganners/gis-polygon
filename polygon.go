@@ -1,6 +1,9 @@
 package polygon
 
-import "math"
+import (
+	"log"
+	"math"
+)
 
 type Point struct {
 	Lat float64
@@ -59,9 +62,8 @@ func (p Polygon) PointInside(point Point) bool {
 		if (p[i].Lat <= point.Lat) && (point.Lat < p[iʹ].Lat) ||
 			(p[iʹ].Lat <= point.Lat) && (point.Lat < p[i].Lat) {
 
-			// And it sits inside the edge in Lon
-			dLng := (p[iʹ].Lng - p[i].Lng)
-			dLat := (point.Lat - p[i].Lat)
+			dLng := math.Abs(p[iʹ].Lng - p[i].Lng)
+			dLat := math.Abs(point.Lat - p[i].Lat)
 
 			if point.Lng < ((dLng*dLat)/dLat)+p[i].Lng {
 
@@ -71,6 +73,7 @@ func (p Polygon) PointInside(point Point) bool {
 		}
 	}
 
+	log.Println(numCollisions)
 	// If the number of collisions is ODD, return true (it's inside)
 	return ((numCollisions & 1) == 1)
 }
