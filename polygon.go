@@ -1,9 +1,6 @@
 package polygon
 
-import (
-	"log"
-	"math"
-)
+import "math"
 
 type Point struct {
 	Lat float64
@@ -73,7 +70,6 @@ func (p Polygon) PointInside(point Point) bool {
 		}
 	}
 
-	log.Println(numCollisions)
 	// If the number of collisions is ODD, return true (it's inside)
 	return ((numCollisions & 1) == 1)
 }
