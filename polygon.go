@@ -55,14 +55,14 @@ func (p Polygon) PointInside(point Point) bool {
 
 		iʹ := (i + 1) % (len(p))
 
-		// If, with Lat, the point sits  within the edge
-		if (p[i].Lat <= point.Lat) && (point.Lat < p[iʹ].Lat) ||
-			(p[iʹ].Lat <= point.Lat) && (point.Lat < p[i].Lat) {
+		// If, with Lat, the point sits within the edge
+		if (p[i].Lat >= point.Lat) != (p[iʹ].Lat >= point.Lat) {
 
-			dLng := math.Abs(p[iʹ].Lng - p[i].Lng)
-			dLat := math.Abs(point.Lat - p[i].Lat)
+			dLng := p[iʹ].Lng - p[i].Lng
+			dLat := point.Lat - p[i].Lat
+			dLatʹ := p[iʹ].Lat - p[i].Lat
 
-			if point.Lng < ((dLng*dLat)/dLat)+p[i].Lng {
+			if point.Lng <= dLng*dLat/dLatʹ+p[i].Lng {
 
 				// It's a collision, so iterate the numCollisions
 				numCollisions++
